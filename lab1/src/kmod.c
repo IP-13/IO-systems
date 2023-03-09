@@ -28,6 +28,11 @@ static size_t space_buffer[BUFFER_SIZE] = {0};
 static size_t space_buffer_size = 0;
 
 
+static int my_dev_uevent(struct device *dev, struct kobj_uevent_env *env) {
+	add_uevent_var(env, "DEVMODE=%#o", 0777);
+}
+
+
 size_t count_spaces(char* str, size_t size) {
     size_t num_of_spaces = 0;
     
@@ -131,6 +136,8 @@ static int __init mod_init(void) {
         unregister_chrdev_region(first, 1);
         return -EFAULT;
     }
+    
+    cl->dev_uevent = my_dev_uevent;
     
     if (device_create(cl, NULL, first, NULL, "VAR4") == NULL) {
         class_destroy(cl);
