@@ -37,8 +37,6 @@ cat /proc/vni_custom
 ```
 
 ## Пример использования
-```
-echo -n "text" > /dev/udp/192.168.0.11/321
-dmesg -T
-cat /proc/vni_custom
-```
+![dmesg](https://github.com/IP-13/IO-systems/blob/main/lab3/dmesg.png)
+
+![proc](https://github.com/IP-13/IO-systems/blob/main/lab3/proc.png)
